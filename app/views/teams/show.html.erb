@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @team.name %>
+</p>
+
+<table style="border: 1px solid black;">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @team.players.each do |p| %>
+      <tr>
+        <td><%= link_to("#{p.first_name} #{p.last_name}", player_path(p.id)) %></td>
+        <td><%= link_to 'View Stats', player_path(p.id) %> | <%= link_to 'Delete', player_path(p.id), method: :delete %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', teams_path %>

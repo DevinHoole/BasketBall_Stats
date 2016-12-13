@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @game.date %>
+</p>
+
+<p>
+  <strong>Team 1:</strong>
+  <%= @game.team1.name %>
+</p>
+
+<p>
+  <strong>Team 2:</strong>
+  <%= @game.team2.name %>
+</p>
+
+<table style="border: 1px solid black;">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @game.players do |p| %>
+      <tr>
+        <td><%= link_to("#{p.player.first_name} #{p.last_name}", player_path(p.id)) %></td>
+        <td><%= link_to 'View Stats', player_path(p.id) %> | <%= link_to 'Delete', player_path(p.id), method: :delete %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>  <%= link_to 'New Player', new_player_path %>
